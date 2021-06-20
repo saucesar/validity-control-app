@@ -6,22 +6,34 @@ class CustomDrawer extends Drawer {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+              UserAccountsDrawerHeader(
+                accountName: Text("Sau Cesar"),
+                accountEmail: Text("cesar@vc.com"),
+                currentAccountPicture: CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: NetworkImage(''),
+                  backgroundColor: Colors.white,
+                  child: Text('S', style: TextStyle(fontSize: 30),),
                 ),
-                child: Text('Menu'),
               ),
               ListTile(
+                leading: Icon(Icons.home_filled),
                 title: Text('Home'),
+                subtitle: Text("Pagina inicial"),
+                trailing: Icon(Icons.arrow_forward),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, '/home');
                 },
               ),
               ListTile(
-                title: Text('Produtos'),
-                onTap: () {},
-              ),
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Sair'),
+                subtitle: Text('Encerrar sessão'),
+                trailing: Icon(Icons.arrow_forward),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/login');
+                },
+              )
             ],
           ),
         );
