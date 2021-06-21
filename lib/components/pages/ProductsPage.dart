@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../CustomDrawer.dart';
-
 class ProductsPage extends StatefulWidget {
   const ProductsPage({ Key? key }) : super(key: key);
 
