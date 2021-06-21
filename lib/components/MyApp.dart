@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: CardButton(
                   onPressed: () {
                     print('Products');
-                    Navigator.pushNamed(context, '/products');
+                    Navigator.of(context).pushNamed('/products');
                   },
                   icon: Icons.ac_unit,
                   title: 'Produtos',
