@@ -17,7 +17,6 @@ class _ProductsPageState extends State<ProductsPage> {
         title: Text('Produtos'),
         actions: [],
       ),
-      drawer: CustomDrawer(context),
     );
   }
 }
