@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).accentColor,
       body: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -38,20 +39,26 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InputText(
-                  hintText: 'Email',
-                  labelText: 'Email',
-                  obscureText: false,
-                  controller: _emailController,
+                Card(
+                  color: Colors.white,
+                  child: InputText(
+                    hintText: 'Email',
+                    labelText: 'Email',
+                    obscureText: false,
+                    controller: _emailController,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                InputText(
-                  hintText: 'Senha',
-                  labelText: 'Senha',
-                  obscureText: true,
-                  controller: _passwordController,
+                Card(
+                  color: Colors.white,
+                  child: InputText(
+                    hintText: 'Senha',
+                    labelText: 'Senha',
+                    obscureText: true,
+                    controller: _passwordController,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -61,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     String email = _emailController.text;
                     String password = _passwordController.text;
                     print(
-                        "Login clicked: email -> $email| password: $password");
+                        "Login clicked: email -> $email | password: $password");
                     Navigator.pushReplacementNamed(context, '/home');
                   },
                   style: ButtonStyle(
