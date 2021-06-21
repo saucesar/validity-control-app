@@ -11,9 +11,12 @@ class CustomDrawer extends Drawer {
                 accountEmail: Text("cesar@vc.com"),
                 currentAccountPicture: CircleAvatar(
                   radius: 30.0,
-                  backgroundImage: NetworkImage(''),
+                  //backgroundImage: NetworkImage(''),
                   backgroundColor: Colors.white,
-                  child: Text('S', style: TextStyle(fontSize: 30),),
+                  child: Text(
+                    'S',
+                    style: TextStyle(fontSize: 30),
+                  ),
                 ),
               ),
               ListTile(
@@ -23,6 +26,7 @@ class CustomDrawer extends Drawer {
                 trailing: Icon(Icons.arrow_forward),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, '/home');
+                  print('Menu -> Home');
                 },
               ),
               ListTile(
@@ -32,6 +36,7 @@ class CustomDrawer extends Drawer {
                 trailing: Icon(Icons.arrow_forward),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, '/login');
+                  print('Menu -> Login');
                 },
               )
             ],
