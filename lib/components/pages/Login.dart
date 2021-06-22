@@ -1,5 +1,9 @@
+import 'dart:convert' as convert;
+
 import 'package:flutter/material.dart';
 import 'package:validity_control_app/components/inputs/InputText.dart';
+import 'package:http/http.dart' as http;
+import 'package:validity_control_app/main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,6 +21,9 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     this._emailController = TextEditingController();
     this._passwordController = TextEditingController();
+
+    this._emailController.text = "cesar@vc.com";
+    this._passwordController.text = "123456";
   }
 
   @override
@@ -64,12 +71,35 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     String email = _emailController.text;
                     String password = _passwordController.text;
                     print(
                         "Login clicked: email -> $email | password: $password");
-                    Navigator.pushReplacementNamed(context, '/home');
+                    var url = Uri.https(Settings.url, 'api/auth/login');
+                    var response = await http.post(url, body: {
+                      'email': _emailController.text,
+                      'password': _passwordController.text
+                    });
+                    print("response status: ${response.statusCode}");
+
+                    if (response.statusCode == 200) {
+                      print(convert.jsonDecode(response.body)['access_token']);
+                      Navigator.pushReplacementNamed(context, '/home');
+                    } else {
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Login inválido'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color>(
